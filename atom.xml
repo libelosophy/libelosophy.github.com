@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://libelosophy.github.io/atom.xml" rel="self"/>
+  <link href="http://libelosophy.github.io/"/>
+  <updated>2013-09-08T16:46:54+08:00</updated>
+  <id>http://libelosophy.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[new post]]></title>
+    <link href="http://libelosophy.github.io/blog/2013/09/08/new-post/"/>
+    <updated>2013-09-08T16:31:00+08:00</updated>
+    <id>http://libelosophy.github.io/blog/2013/09/08/new-post</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
