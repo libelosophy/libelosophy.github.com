@@ -4,7 +4,7 @@
   <title><![CDATA[Category: experiment | Blog On The Way`]]></title>
   <link href="http://libelosophy.github.io/blog/categories/experiment/atom.xml" rel="self"/>
   <link href="http://libelosophy.github.io/"/>
-  <updated>2013-09-08T21:02:04+08:00</updated>
+  <updated>2013-09-13T00:15:02+08:00</updated>
   <id>http://libelosophy.github.io/</id>
   <author>
     <name><![CDATA[JH]]></name>
@@ -18,12 +18,12 @@
     <link href="http://libelosophy.github.io/blog/2013/09/08/think-more/"/>
     <updated>2013-09-08T16:31:00+08:00</updated>
     <id>http://libelosophy.github.io/blog/2013/09/08/think-more</id>
-    <content type="html"><![CDATA[<p> 在整Github pages 上写博客，利用的是 octopress ，看的是官方的<a href="" title="http://octopress.org/docs/deploying/github/">文档</a>。</p>
+    <content type="html"><![CDATA[<p> 在整Github pages 上写博客，利用的是 octopress ，看的是官方的<a href="http://octopress.org/docs/deploying/github/%20github">文档</a>。</p>
 
 <p> 最开始看的时候很急，基本上只看了命令，等到过不去才去仔细看下。因此两处理解错误 或者说根本就没有理解，导致了时间按的大量浪费。</p>
 
 <ol>
-<li><p>在 <a href="" title="http://octopress.org/docs/deploying/github/">Deploying to Github Pages</a> 页面，With Github User/Orignaization pages 和下面的 With gh-pages 是两个同级别标题，选一种就可以了，可是我却两种都做了。结果是很混乱，完全不知道怎么处理。</p></li>
+<li><p>在 <a href="http://octopress.org/docs/deploying/github/" title="github Deploying to Github Pages">Deploying to Github Pages</a> 页面，With Github User/Orignaization pages 和下面的 With gh-pages 是两个同级别标题，选一种就可以了，可是我却两种都做了。结果是很混乱，完全不知道怎么处理。</p></li>
 <li><p>With Github User/Organization pages 下要填的 url最后面是上面建立的 Repository 的名称，我没仔细想，只是不断的乱试，花了n 多时间。</p></li>
 </ol>
 
