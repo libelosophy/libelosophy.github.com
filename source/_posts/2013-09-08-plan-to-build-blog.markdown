@@ -3,7 +3,7 @@ layout: post
 title: "Plan For Blogging..."
 date: 2013-09-08 20:55
 comments: true
-categories:	plan 
+categories:	public 	plan 
 ---
 
 ---------------

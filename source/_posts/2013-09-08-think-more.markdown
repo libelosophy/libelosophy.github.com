@@ -3,7 +3,7 @@ layout: post
 title: "Before next step , try to ensure all of above are right"
 date: 2013-09-08 16:31
 comments: true
-categories: experiment
+categories:   protected  experiment
 ---
 
  在整Github pages 上写博客，利用的是 octopress ，看的是官方的[文档](http://octopress.org/docs/deploying/github/ github)。
