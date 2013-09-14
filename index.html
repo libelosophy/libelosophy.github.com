@@ -9,7 +9,9 @@
   <meta name="author" content="JH">
 
   
-  <meta name="description" content="高质量的博客？ 有时以为，博客要写的话，一定要写高质量的博客，于是有时候想动手写点博客时就没有写，可是高质量的博客要写成总是要有个过程，不可能要一个刚刚接触 编程的人就写出高质量的博客吧?当然我不是刚刚接触。 但是低质量的博客写多了似乎会产生坏的影响，一是给自己一种杂乱的感觉，还有标识了自己的肤浅 &hellip;">
+  <meta name="description" content="Ubuntu install emacs24 from source code # get source code wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz
+# extract
+tar -xvf emacs-24.3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +67,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/14/ubuntu-install-emacs23/">Ubuntu Install emacs24.3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-14T22:24:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/14/ubuntu-install-emacs23/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Ubuntu install emacs24 from source code</h2>
+
+<pre><code># get source code   
+wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz
+# extract
+tar -xvf emacs-24.3.tar.xz
+cd emac-24.3
+
+# install x toolkit support lib and other (libtinfo is required)
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install libtinfo-dev
+
+# configure 
+./configure --with-xpm=no --with-jpeg=no --with-gif=no --with-tiff=no
+
+# make 
+make 
+
+# Test if emacs works
+src/emacs -Q
+
+# install 
+sudo make install 
+
+# Test if install is succed
+emacs
+
+# clean the output
+make clean
+
+# save the source code 
+sudo mv emacs-24.3 /usr/local/src
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -229,6 +301,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/14/ubuntu-install-emacs23/">Ubuntu Install emacs24.3</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/09/13/u-should-write-blog/">U Should Write Blog</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Blog On The Way`]]></title>
   <link href="http://libelosophy.github.io/atom.xml" rel="self"/>
   <link href="http://libelosophy.github.io/"/>
-  <updated>2013-09-14T10:49:42+08:00</updated>
+  <updated>2013-09-14T22:52:10+08:00</updated>
   <id>http://libelosophy.github.io/</id>
   <author>
     <name><![CDATA[JH]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu install  emacs24.3]]></title>
+    <link href="http://libelosophy.github.io/blog/2013/09/14/ubuntu-install-emacs23/"/>
+    <updated>2013-09-14T22:24:00+08:00</updated>
+    <id>http://libelosophy.github.io/blog/2013/09/14/ubuntu-install-emacs23</id>
+    <content type="html"><![CDATA[<h2>Ubuntu install emacs24 from source code</h2>
+
+<pre><code># get source code   
+wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz
+# extract
+tar -xvf emacs-24.3.tar.xz
+cd emac-24.3
+
+# install x toolkit support lib and other (libtinfo is required)
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install libtinfo-dev
+
+# configure 
+./configure --with-xpm=no --with-jpeg=no --with-gif=no --with-tiff=no
+
+# make 
+make 
+
+# Test if emacs works
+src/emacs -Q
+
+# install 
+sudo make install 
+
+# Test if install is succed
+emacs
+
+# clean the output
+make clean
+
+# save the source code 
+sudo mv emacs-24.3 /usr/local/src
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[U Should Write Blog]]></title>
