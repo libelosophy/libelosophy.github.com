@@ -9,9 +9,8 @@
   <meta name="author" content="JH">
 
   
-  <meta name="description" content="Ubuntu install emacs24 from source code # get source code wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz
-# extract
-tar -xvf emacs-24.3. &hellip;">
+  <meta name="description" content="1. Ubuntu install emacs24 from source code # get source code wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz # extract
+tar -xvf emacs-24. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,7 +72,7 @@ tar -xvf emacs-24.3. &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/09/14/ubuntu-install-emacs23/">Ubuntu Install emacs24.3</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/09/15/ubuntu-install-and-use-emacs24/">Ubuntu Install &amp; Use Emacs24</a></h1>
     
     
       <p class="meta">
@@ -89,19 +88,20 @@ tar -xvf emacs-24.3. &hellip;">
   
 
 
-<time datetime="2013-09-14T22:24:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+<time datetime="2013-09-15T00:37:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
         
-         | <a href="/blog/2013/09/14/ubuntu-install-emacs23/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/09/15/ubuntu-install-and-use-emacs24/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>Ubuntu install emacs24 from source code</h2>
+  <div class="entry-content"><h3>1. Ubuntu install emacs24 from source code</h3>
 
-<pre><code># get source code   
+<pre><code># get source code       
 wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz
+
 # extract
 tar -xvf emacs-24.3.tar.xz
 cd emac-24.3
@@ -131,6 +131,39 @@ make clean
 # save the source code 
 sudo mv emacs-24.3 /usr/local/src
 </code></pre>
+
+<h3>2. Basic usage</h3>
+
+<ul>
+<li>一般用法 CONTROL + &lt;chr>
+  两种 CONTROL ：
+
+<ul>
+<li>CTRL /CTL ：Ctrl</li>
+<li>META: Meta / Edit / Alt</li>
+</ul>
+</li>
+<li>退出 编辑的session ： C-c C-x</li>
+<li>下一页： C-v (View next page)</li>
+<li>上一页： M-v</li>
+<li>页内移动：
+
+<ol>
+<li> previous : C-p 前一行</li>
+<li> next : C-n 后一行</li>
+<li> backward : C-b 前移</li>
+<li> forword : C-f 后移 中央聚焦： C-l 使光标所在处显示在屏幕中央</li>
+<li><p> 字移动 ：M-b 以字为为单位向后移动（中文是移到下个标点，下同） : M-f word forward</p></li>
+<li><p> C-a, C-e : 移动到行开始，行结束</p></li>
+<li><p> M-a, M-e : 移动到上一句，下一句</p></li>
+<li><p> M-&lt; : 文字开始 Alt+ shift + ,</p></li>
+<li><p> M-> : 文字结束 Alt+ shift + .</p></li>
+</ol>
+</li>
+<li><p>重复： C-u 数字 C-&lt;chr> 例外： C-u &lt;num> C-v/M-v 是卷动 num 行，而不是 num 页</p></li>
+<li><p>停止/取消数字参数/ 撤销ESC： C-g</p></li>
+</ul>
+
 </div>
   
   
@@ -303,7 +336,7 @@ sudo mv emacs-24.3 /usr/local/src
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/09/14/ubuntu-install-emacs23/">Ubuntu Install emacs24.3</a>
+        <a href="/blog/2013/09/15/ubuntu-install-and-use-emacs24/">Ubuntu Install &amp; Use Emacs24</a>
       </li>
     
       <li class="post">
