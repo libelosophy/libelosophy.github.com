@@ -9,8 +9,7 @@
   <meta name="author" content="JH">
 
   
-  <meta name="description" content=" Plan For My Blog On GitHub Pages 加入评论功能，利用 disqus 。
-Try to change the Theme. ">
+  <meta name="description" content="高质量的博客？ 有时以为，博客要写的话，一定要写高质量的博客，于是有时候想动手写点博客时就没有写，可是高质量的博客要写成总是要有个过程，不可能要一个刚刚接触 编程的人就写出高质量的博客吧?当然我不是刚刚接触。 但是低质量的博客写多了似乎会产生坏的影响，一是给自己一种杂乱的感觉，还有标识了自己的肤浅 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +71,52 @@ Try to change the Theme. ">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/09/13/u-should-write-blog/">U Should Write Blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-13T00:20:00+08:00" pubdate data-updated="true">Sep 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/13/u-should-write-blog/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>高质量的博客？</h2>
+
+<p>有时以为，博客要写的话，一定要写高质量的博客，于是有时候想动手写点博客时就没有写，可是高质量的博客要写成总是要有个过程，不可能要一个刚刚接触 编程的人就写出高质量的博客吧?当然我不是刚刚接触。</p>
+
+<p>但是低质量的博客写多了似乎会产生坏的影响，一是给自己一种杂乱的感觉，还有标识了自己的肤浅。再者就是浪费了别人的时间。</p>
+
+<p>那么这个问题该如何解决呢？</p>
+
+<p>另外，我也不只想在博客里写下这个方面的言语，却又觉得在这个地方码代码无关的内容似乎不太好。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/09/08/plan-to-build-blog/">Plan for Blogging&#8230;</a></h1>
     
     
@@ -90,6 +135,8 @@ Try to change the Theme. ">
 
 <time datetime="2013-09-08T20:55:00+08:00" pubdate data-updated="true">Sep 8<span>th</span>, 2013</time>
         
+         | <a href="/blog/2013/09/08/plan-to-build-blog/#disqus_thread">Comments</a>
+        
       </p>
     
   </header>
@@ -100,8 +147,13 @@ Try to change the Theme. ">
 <p>Plan For My Blog On GitHub Pages</p>
 
 <ol>
-<li><p>加入评论功能，利用 disqus 。</p></li>
-<li><p>Try to change the Theme.</p></li>
+<li><p>加入评论功能，利用 disqus 。
+在<a href="http://disque.com" title="disqus">disqus</a> 注册，填入自己的站点的uri ，设置shortname，copy shortname 到_config.yml的相关地方，并将下面的false设置为 true 。</p>
+
+<pre><code>  # Disqus Comments
+  # disqus_short_name: xxxxxxxxxxx
+  # disqus_show_comment_count: true
+</code></pre></li>
 </ol>
 
 </div>
@@ -133,6 +185,8 @@ Try to change the Theme. ">
 
 
 <time datetime="2013-09-08T16:31:00+08:00" pubdate data-updated="true">Sep 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/08/think-more/#disqus_thread">Comments</a>
         
       </p>
     
@@ -177,6 +231,10 @@ Try to change the Theme. ">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/13/u-should-write-blog/">U Should Write Blog</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/08/plan-to-build-blog/">Plan for Blogging&#8230;</a>
       </li>
     
@@ -185,6 +243,35 @@ Try to change the Theme. ">
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/libelosophy">@libelosophy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'libelosophy',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -204,9 +291,30 @@ Try to change the Theme. ">
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'libelosophysblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 

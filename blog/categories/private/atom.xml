@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: private | Blog On The Way`]]></title>
+  <link href="http://libelosophy.github.io/blog/categories/private/atom.xml" rel="self"/>
+  <link href="http://libelosophy.github.io/"/>
+  <updated>2013-09-14T10:49:42+08:00</updated>
+  <id>http://libelosophy.github.io/</id>
+  <author>
+    <name><![CDATA[JH]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[U Should Write Blog]]></title>
+    <link href="http://libelosophy.github.io/blog/2013/09/13/u-should-write-blog/"/>
+    <updated>2013-09-13T00:20:00+08:00</updated>
+    <id>http://libelosophy.github.io/blog/2013/09/13/u-should-write-blog</id>
+    <content type="html"><![CDATA[<h2>高质量的博客？</h2>
+
+<p>有时以为，博客要写的话，一定要写高质量的博客，于是有时候想动手写点博客时就没有写，可是高质量的博客要写成总是要有个过程，不可能要一个刚刚接触 编程的人就写出高质量的博客吧?当然我不是刚刚接触。</p>
+
+<p>但是低质量的博客写多了似乎会产生坏的影响，一是给自己一种杂乱的感觉，还有标识了自己的肤浅。再者就是浪费了别人的时间。</p>
+
+<p>那么这个问题该如何解决呢？</p>
+
+<p>另外，我也不只想在博客里写下这个方面的言语，却又觉得在这个地方码代码无关的内容似乎不太好。</p>
+]]></content>
+  </entry>
+  
+</feed>
