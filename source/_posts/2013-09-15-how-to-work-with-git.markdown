@@ -14,10 +14,16 @@ categories: note git
 
 ![create repo]( /images/blog/create_repo.png)
 
-點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。假設repo 名爲*project*。 
+點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。
+
+假設repo 名爲*project*。 
+
 *  安裝 git ：
- Windows ： 下載  [msysgit](https://code.google.com/p/msysgit/downloads/list "msysgit")
+
++ Windows ： 下載  [msysgit](https://code.google.com/p/msysgit/downloads/list "msysgit")
+
 + Linux : 
+
   - ubuntu : 
 
 	  sudo apt-get install git 
@@ -37,6 +43,7 @@ categories: note git
 	# 代碼push 到你的 github 遠程repo 上。
 	git push origin master 
 
-然後在eclipse 中導入項目，目錄選擇AndroidFileExplorer.完成後進行開發。
+然後在eclipse 中導入項目，目錄選擇AndroidFileExplorer.
+完成後進行開發。
 	
 	
