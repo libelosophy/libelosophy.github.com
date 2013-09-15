@@ -9,8 +9,10 @@
   <meta name="author" content="JH">
 
   
-  <meta name="description" content="1. Ubuntu install emacs24 from source code # get source code wget http://mirrors.ustc.edu.cn/gnu/emacs/emacs-24.3.tar.xz # extract
-tar -xvf emacs-24. &hellip;">
+  <meta name="description" content="如何使用GIT 註冊: 到 github 註冊一個帳號。
+在你的github 頁面新建一個 repository 點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。假設repo 名爲project。
+* 安裝 git ： Windows ： 下載 msysgit
++ Linux &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +68,82 @@ tar -xvf emacs-24. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/15/how-to-work-with-git/">How to Work With Git</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:18:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/15/how-to-work-with-git/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>如何使用GIT </h2>
+
+<ul>
+<li>註冊:  到 <a href="https://github.com" title="github">github</a> 註冊一個帳號。</li>
+<li>在你的github 頁面新建一個 repository</li>
+</ul>
+
+
+<p><img src="/images/blog/create_repo.png" alt="create repo" /></p>
+
+<p>點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。假設repo 名爲<em>project</em>。
+*  安裝 git ：
+ Windows ： 下載  <a href="https://code.google.com/p/msysgit/downloads/list" title="msysgit">msysgit</a>
++ Linux :
+  &ndash; ubuntu :</p>
+
+<pre><code>  sudo apt-get install git 
+</code></pre>
+
+<ul>
+<li>git 本地操作。</li>
+</ul>
+
+
+<p> window 打開git-bash.bat, linux 打開終端。執行以下操作：</p>
+
+<pre><code>mkdir workspace
+cd workspace
+git clone https://github.com/libelosophy/AndroidFileExplorer.git 
+cd AndroidFileExplorer
+git remote add origin https://github.com/*你的用戶名*/project.git # project 爲repo 名
+git add .
+git commit -m "提交說明，可以隨便寫“
+
+# 代碼push 到你的 github 遠程repo 上。
+git push origin master 
+</code></pre>
+
+<p>然後在eclipse 中導入項目，目錄選擇AndroidFileExplorer.完成後進行開發。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -334,6 +412,10 @@ sudo mv emacs-24.3 /usr/local/src
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/15/how-to-work-with-git/">How to Work With Git</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/09/15/ubuntu-install-and-use-emacs24/">Ubuntu Install &amp; Use Emacs24</a>

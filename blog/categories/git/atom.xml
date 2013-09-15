@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | Blog On The Way`]]></title>
+  <link href="http://libelosophy.github.io/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://libelosophy.github.io/"/>
+  <updated>2013-09-15T13:36:14+08:00</updated>
+  <id>http://libelosophy.github.io/</id>
+  <author>
+    <name><![CDATA[JH]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Work with Git]]></title>
+    <link href="http://libelosophy.github.io/blog/2013/09/15/how-to-work-with-git/"/>
+    <updated>2013-09-15T12:18:00+08:00</updated>
+    <id>http://libelosophy.github.io/blog/2013/09/15/how-to-work-with-git</id>
+    <content type="html"><![CDATA[<h2>如何使用GIT </h2>
+
+<ul>
+<li>註冊:  到 <a href="https://github.com" title="github">github</a> 註冊一個帳號。</li>
+<li>在你的github 頁面新建一個 repository</li>
+</ul>
+
+
+<p><img src="/images/blog/create_repo.png" alt="create repo" /></p>
+
+<p>點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。假設repo 名爲<em>project</em>。
+*  安裝 git ：
+ Windows ： 下載  <a href="https://code.google.com/p/msysgit/downloads/list" title="msysgit">msysgit</a>
++ Linux :
+  &ndash; ubuntu :</p>
+
+<pre><code>  sudo apt-get install git 
+</code></pre>
+
+<ul>
+<li>git 本地操作。</li>
+</ul>
+
+
+<p> window 打開git-bash.bat, linux 打開終端。執行以下操作：</p>
+
+<pre><code>mkdir workspace
+cd workspace
+git clone https://github.com/libelosophy/AndroidFileExplorer.git 
+cd AndroidFileExplorer
+git remote add origin https://github.com/*你的用戶名*/project.git # project 爲repo 名
+git add .
+git commit -m "提交說明，可以隨便寫“
+
+# 代碼push 到你的 github 遠程repo 上。
+git push origin master 
+</code></pre>
+
+<p>然後在eclipse 中導入項目，目錄選擇AndroidFileExplorer.完成後進行開發。</p>
+]]></content>
+  </entry>
+  
+</feed>
