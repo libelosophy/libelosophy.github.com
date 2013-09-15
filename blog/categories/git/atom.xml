@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | Blog On The Way`]]></title>
   <link href="http://libelosophy.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://libelosophy.github.io/"/>
-  <updated>2013-09-15T13:36:14+08:00</updated>
+  <updated>2013-09-15T13:41:08+08:00</updated>
   <id>http://libelosophy.github.io/</id>
   <author>
     <name><![CDATA[JH]]></name>
@@ -28,17 +28,22 @@
 
 <p><img src="/images/blog/create_repo.png" alt="create repo" /></p>
 
-<p>點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。假設repo 名爲<em>project</em>。
-*  安裝 git ：
- Windows ： 下載  <a href="https://code.google.com/p/msysgit/downloads/list" title="msysgit">msysgit</a>
-+ Linux :
-  &ndash; ubuntu :</p>
+<p>點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。</p>
 
-<pre><code>  sudo apt-get install git 
-</code></pre>
+<p>假設repo 名爲<em>project</em>。</p>
 
 <ul>
-<li>git 本地操作。</li>
+<li><p>安裝 git ：</p></li>
+<li><p>Windows ： 下載  <a href="https://code.google.com/p/msysgit/downloads/list" title="msysgit">msysgit</a></p></li>
+<li><p>Linux :</p>
+
+<ul>
+<li><p>ubuntu :</p>
+
+<p>  sudo apt-get install git</p></li>
+</ul>
+</li>
+<li><p>git 本地操作。</p></li>
 </ul>
 
 
@@ -56,7 +61,8 @@ git commit -m "提交說明，可以隨便寫“
 git push origin master 
 </code></pre>
 
-<p>然後在eclipse 中導入項目，目錄選擇AndroidFileExplorer.完成後進行開發。</p>
+<p>然後在eclipse 中導入項目，目錄選擇AndroidFileExplorer.
+完成後進行開發。</p>
 ]]></content>
   </entry>
   
