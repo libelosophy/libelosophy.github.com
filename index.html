@@ -9,10 +9,8 @@
   <meta name="author" content="JH">
 
   
-  <meta name="description" content="如何使用GIT 註冊: 到 github 註冊一個帳號。
-在你的github 頁面新建一個 repository 點擊中間那個帶有 + 的圖標，爲repo 取名，添加描述，確認。 假設repo 名爲project。 安裝 git ：
-Windows ： 下載 msysgit
-Linux : &hellip;">
+  <meta name="description" content="书籍 Adcanced Progamming in the UNIX Environment (Second Edition) &mdash;W.Richard Stevens , Stephen A. Rago
+Advanced UNIX Programming (Second Edition &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +66,195 @@ Linux : &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/19/unix-programming/">Unix Programming</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-19T10:00:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/19/unix-programming/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>书籍</h2>
+
+<ul>
+<li><p>Adcanced Progamming in the UNIX Environment (Second Edition) &mdash;W.Richard Stevens , Stephen A. Rago</p></li>
+<li><p>Advanced UNIX Programming (Second Edition)  &mdash;Marc J. Rochking</p></li>
+<li><p>Linux 程序员手册 通过 man 命令可查看</p></li>
+</ul>
+
+
+<h2>UNIX 高级环境编程的内容</h2>
+
+<ol type="a">
+<li><p>系统调用接口</p></li>
+<li><p>(标准C)库函数</p></li>
+</ol>
+
+
+<p>两本书中,有一本只准备讲系统调用,而故意忽略标准Ｃ库函数.那么系统掉调用和库函数的区别在哪儿呢?</p>
+
+<ul>
+<li>各种版本的UNIX 实现都提供了定义明确、数量有限、可直接进入内核的入口点。这些入口点就称为系统调用（System Call）</li>
+<li>UNIX  为每个系统调用在标准Ｃ库中设置一个具有同样名字的函数，这些函数可能会调用一个或多个系统调用。</li>
+<li>系统调用会产生两次模式切换（用户&mdash;内核，内核拥有最高级别权限）,但是不一定会产生上下文切换<a href="http://en.wikipedia.org/wiki/System_call#Processor_mode_and_context_switching" title="进程模型和上下文切换">?wiki</a></li>
+<li>而库函数调用<a href="http://en.wikipedia.org/wiki/System_call#The_library_as_an_intermediary" title="系统调用作为中介">本身不会产生模式切换</a>,因为它工作在用户模式.不过如果该库函数调用系统调用,则会产生.</li>
+<li>系统调用通常提供一种最小接口,而库函数通常提供比较复杂的功能.</li>
+<li>POSIX 标准中包含 ISO C.</li>
+<li>几个例子说明系统调用和库函数的区别:(UNIX高级环境编程)
+
+<ol>
+<li>malloc 存储器分配函数调用了 sbrk 系统调用实现了一种特定的存储分配方式,不过你也可以用 sbrk 实现其他的存储分配方式</li>
+<li>UNIX 系统只提供一个获取时间的系统调用,该系统调用返回国际标准时间 1970.1.1 零点以来经过的所有秒数,而各种库函数则可以对这个数值进行各种解释,如转换为人类可读的形式,或者夏時制算法等等.</li>
+</ol>
+</li>
+</ul>
+
+
+<h2>unix 标准化</h2>
+
+<ul>
+<li>ISO C</li>
+</ul>
+
+
+<p>ISO: International Organizaition for Standardization 国际标准化组</p>
+
+<p>提供Ｃ 程序的可移植性,使其适合于大量不同操作系统
+定义了Ｃ 程序语言的设计语法和语义 及 其标准库</p>
+
+<ul>
+<li>IEEE POSIX</li>
+</ul>
+
+
+<p>IEEE : Institute of Electrical and Electronics Engineers 电子与电气工程师协会</p>
+
+<p>POSIX: Portable Operating System Interface 可移植操作系统接口 X表示对ＵＮＩＸ API 的传承</p>
+
+<p>提高应用程序在各ＵＮＩＸ 系统环境之间的可移植性.
+定义了遵从ＰＯＳＩＸ 的操作系统所必须提供的各种服务.</p>
+
+<ul>
+<li>Single UNIX Specification
+单一UNIX 规范 ,是POSIX.1 标准的一个超集. 亦称(XSI) X/Open System Interface</li>
+</ul>
+
+
+<h2>UNIX 基础之 文件系统</h2>
+
+<p>文件:</p>
+
+<pre><code>* 常规文件
+* 目录
+* 符号连接
+* 特殊文件
+* 命名管道(FIFO)
+* 套接字文件(socket)
+</code></pre>
+
+<h2>文件 I/O (不带缓冲的I/O)</h2>
+
+<p>不带缓冲: 每个read 和 write 都调用内核中的一个系统调用</p>
+
+<ul>
+<li>内容:
+
+<ul>
+<li>open</li>
+<li>create</li>
+<li>close</li>
+<li>lseek</li>
+<li>read</li>
+<li>write</li>
+<li>dup dup2</li>
+<li>sync fsync fdatasync</li>
+<li>fcntl</li>
+<li>ioctl</li>
+</ul>
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/16/sicp/">SICP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T17:41:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/16/sicp/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>计算机程序的解释与构造 </h2>
+
+<h2>Books online</h2>
+
+<ul>
+<li><a href="http://www.cs.berkeley.edu/~bh/ss-toc2.html" title="SSICS">Simply Scheme : Introducing Computer Science</a></li>
+<li><a href="http://mitpress.mit.edu/sicp/full-text/book/book.html" title="SICP">Structure and Interpretation of Computer Programs</a></li>
+</ul>
+
+
+<p>PS: <a href="http://blog.csdn.net/johnhomsea/article/details/8950121" title="计算机程序的解释与构造">An introdution</a></p>
+
+<h2>Install Scheme</h2>
+
+<p>参考页面：<a href="http://caisah.info/emacs-for-sicp-scheme/" title="install scheme">How to get your environment ready for SICP (Structure and Interpretation of Computer Programs) course and Configure Emacs for Scheme programming</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -420,6 +607,14 @@ sudo mv emacs-24.3 /usr/local/src
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/19/unix-programming/">Unix Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/16/sicp/">SICP</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/15/how-to-work-with-git/">How to Work With Git</a>
       </li>
     
@@ -429,14 +624,6 @@ sudo mv emacs-24.3 /usr/local/src
     
       <li class="post">
         <a href="/blog/2013/09/13/u-should-write-blog/">U Should Write Blog</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/08/plan-to-build-blog/">Plan for Blogging&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/08/think-more/">Before Next Step , Try to Ensure All of Above Are Right</a>
       </li>
     
   </ul>

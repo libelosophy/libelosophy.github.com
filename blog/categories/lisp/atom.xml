@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lisp | Blog On The Way`]]></title>
+  <link href="http://libelosophy.github.io/blog/categories/lisp/atom.xml" rel="self"/>
+  <link href="http://libelosophy.github.io/"/>
+  <updated>2013-09-21T00:57:31+08:00</updated>
+  <id>http://libelosophy.github.io/</id>
+  <author>
+    <name><![CDATA[JH]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SICP]]></title>
+    <link href="http://libelosophy.github.io/blog/2013/09/16/sicp/"/>
+    <updated>2013-09-16T17:41:00+08:00</updated>
+    <id>http://libelosophy.github.io/blog/2013/09/16/sicp</id>
+    <content type="html"><![CDATA[<h2>计算机程序的解释与构造 </h2>
+
+<h2>Books online</h2>
+
+<ul>
+<li><a href="http://www.cs.berkeley.edu/~bh/ss-toc2.html" title="SSICS">Simply Scheme : Introducing Computer Science</a></li>
+<li><a href="http://mitpress.mit.edu/sicp/full-text/book/book.html" title="SICP">Structure and Interpretation of Computer Programs</a></li>
+</ul>
+
+
+<p>PS: <a href="http://blog.csdn.net/johnhomsea/article/details/8950121" title="计算机程序的解释与构造">An introdution</a></p>
+
+<h2>Install Scheme</h2>
+
+<p>参考页面：<a href="http://caisah.info/emacs-for-sicp-scheme/" title="install scheme">How to get your environment ready for SICP (Structure and Interpretation of Computer Programs) course and Configure Emacs for Scheme programming</a></p>
+]]></content>
+  </entry>
+  
+</feed>
