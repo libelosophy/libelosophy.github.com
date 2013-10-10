@@ -1,18 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://libelosophy.github.io/blog/2013/09/08/think-more/</loc>
-        <lastmod>2013-09-13T00:43:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://libelosophy.github.io/blog/2013/09/08/plan-to-build-blog/</loc>
-        <lastmod>2013-09-13T01:15:30+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://libelosophy.github.io/blog/2013/09/13/u-should-write-blog/</loc>
-        <lastmod>2013-09-13T00:43:50+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://libelosophy.github.io/blog/2013/09/15/ubuntu-install-and-use-emacs24/</loc>
         <lastmod>2013-09-15T00:47:58+08:00</lastmod>
     </url>
