@@ -106,6 +106,20 @@ Advanced UNIX Programming (Second Edition &hellip;">
 </ul>
 
 
+<p><em>参考</em></p>
+
+<ol>
+<li>[www.unix.org] (<a href="http://www.unix.org">http://www.unix.org</a>)   <br/>
+<a href="http://vdisk.weibo.com/s/BJfv-cwfN3MXe"> 下载好的2013版html susv4</a>     <br/>
+<a href="http://vdisk.weibo.com/s/BJfv-cwfN4uxq">04版 susv3</a>    <br/>
+<a href="http://pubs.opengroup.org/onlinepubs/009695399/toc.htm">suv3在线查看</a></li>
+</ol>
+
+
+<p></br>
+2. c 语言：<a href="http://vdisk.weibo.com/s/BJfv-cwfN3NpO"> C A reference manual </a>
+3. c++ The C++ Programming Language</p>
+
 <h2>UNIX 高级环境编程的内容</h2>
 
 <ol type="a">
@@ -165,15 +179,20 @@ Advanced UNIX Programming (Second Edition &hellip;">
 
 <h2>UNIX 基础之 文件系统</h2>
 
-<p>文件:</p>
+<ul>
+<li>文件类别:
 
-<pre><code>* 常规文件
-* 目录
-* 符号连接
-* 特殊文件
-* 命名管道(FIFO)
-* 套接字文件(socket)
-</code></pre>
+<ul>
+<li>常规文件</li>
+<li>目录</li>
+<li>符号连接</li>
+<li>特殊文件</li>
+<li>命名管道(FIFO)</li>
+<li>套接字文件(socket)</li>
+</ul>
+</li>
+</ul>
+
 
 <h2>文件 I/O (不带缓冲的I/O)</h2>
 
@@ -193,6 +212,60 @@ Advanced UNIX Programming (Second Edition &hellip;">
 <li>sync fsync fdatasync</li>
 <li>fcntl</li>
 <li>ioctl</li>
+</ul>
+</li>
+</ul>
+
+
+<p><em>文件描述符</em><br/>
+内核使用 <em>文件描述符</em> 来引用打开的文件，文件描述符是一个整数      <br/>
+&mdash; 当系统 打开一个现有文件或者创建一个新的文件时（open ，create），内核向进程返回一个文件描述符。<br/>
+&mdash; 当读或写一个文件时，将标识一个文件的文件描述符作为参数传递给read 或 write</p>
+
+<h3>open</h3>
+
+<hr />
+
+<pre><code>#inlcude &lt;fcntl.h&gt;
+
+int open(const char * path, int oflag, .../* mode_t mode */);
+int openat(int fd, const char * path, int oflag, ...);// relative to directory file descriptor
+</code></pre>
+
+<p>文件和文件描述符之间的连接桥梁，它会创建一个打开的文件描述符，该文件描述符关联这个打开的文件。文件描述符被用于其他IO 功能中引用文件。
+默认的文件偏移别设置在文件的开始处</p>
+
+<p><em>path</em>  &mdash;  points to a pathname nameing the file     <br/>
+<em>oflag</em> &mdash; file status flags and file access modes of the open file description shall be set according to the value of <em>oflag</em></p>
+
+<p>Vlaues of <em>oflags</em> (bitwise-inclusive OR of flags , defined in fcntl.h)   <br/>
+Application shall specify exactly one of the first five(susv4) or three(susv3) values (file access modes) below in the value of oflag:</p>
+
+<ul>
+<li><p>三个必选其一的 access mode ：</p>
+
+<ul>
+<li>O_RDONLY</li>
+<li>O_RDWR &mdash;  Open for reading and writing, The result is undefined if this flag is applied to a FIFO(命名管道)</li>
+<li>O_WRONLY</li>
+</ul>
+</li>
+<li><p>add in susv4</p>
+
+<ul>
+<li>O_EXEC &mdash; Open for execute only (non-directory files), the result is unspecified if this flag is applied to a directory.</li>
+<li>O_SEARCH &mdash; open directory for search only, The result is unspecified if the flag is applied to a non-directory file.</li>
+</ul>
+</li>
+<li><p>可选组合：</p>
+
+<ul>
+<li>O_APPEND &mdash; if set , the file offset shall be set to the end of the file prior to each write. （如果设置的话， 文件偏移会被设置到文件末尾）</li>
+<li>O_CLOEXEC &mdash; if set, FD_CLOEXEC flag for the new file descriptor shall be set</li>
+<li>O_CREATE &mdash; If file exists, this flag has no effect except as noted under O_EXCL below. Otherwise, the file shall be create; the user ID of the file shall be set to the effective user ID of the process ; the group ID of the file shall be set to the group ID of the file&rsquo;s parent directory or to the effective group ID of the process; and the access permisssion bits (see sys/stat.h) of the file mode shall be set to the value of the argument following oflag taken as type mode_t modified as follow: a bitwise AND is performed on the file-mode bits and the corresponding bits in the complement of the process&rsquo;s file mode bits creationg mask is set are cleared .  When bits other than the file permission bits are set, the effect if unspecified. the argument following the oflag does not affect whether the file is open for reading, writing, or for both. Implementions shall provide a way to initailize the file&rsquo;s group ID to the group ID of the parent directory.Implementations may , but need not , provider an implementation-defined way to initialize the file&rsquo;s group ID to the effective group ID of the calling process.</li>
+<li>O_DIRECTORY &mdash; IF  path resolves to a non-directory file , fail and set errno to [ENOTDIR]</li>
+<li>O_DSYNC &mdash; Write I/O operations on the file descriptor shall complete ad defined by synchronized I/O data integrity completion. 使每次I/O 等待物理I/O 操作完成，但是如果写操作并不影响读取刚写入的数据，则不等待文件属性被更新。</li>
+<li>O_EXCL &mdash;</li>
 </ul>
 </li>
 </ul>
