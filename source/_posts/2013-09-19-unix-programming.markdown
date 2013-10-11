@@ -14,6 +14,19 @@ categories: unix
 
 * Linux 程序员手册 通过 man 命令可查看
 
+_参考_	
+
+1. [www.unix.org] (http://www.unix.org)		
+[ 下载好的2013版html susv4](http://vdisk.weibo.com/s/BJfv-cwfN3MXe )		
+[04版 susv3](http://vdisk.weibo.com/s/BJfv-cwfN4uxq )		
+[suv3在线查看](http://pubs.opengroup.org/onlinepubs/009695399/toc.htm)		
+
+</br>
+2. c 语言：[ C A reference manual ](http://vdisk.weibo.com/s/BJfv-cwfN3NpO)
+3. c++ The C++ Programming Language
+
+
+
 ## UNIX 高级环境编程的内容
 
 A.  系统调用接口
@@ -56,7 +69,7 @@ POSIX: Portable Operating System Interface 可移植操作系统接口 X表示�
 单一UNIX 规范 ,是POSIX.1 标准的一个超集. 亦称(XSI) X/Open System Interface
 
 ## UNIX 基础之 文件系统
-文件:
+* 文件类别:
 	* 常规文件
 	* 目录
 	* 符号连接
@@ -81,3 +94,45 @@ POSIX: Portable Operating System Interface 可移植操作系统接口 X表示�
 	+ fcntl
 	+ ioctl
 	
+	
+_文件描述符_  
+内核使用 _文件描述符_ 来引用打开的文件，文件描述符是一个整数		
+-- 当系统 打开一个现有文件或者创建一个新的文件时（open ，create），内核向进程返回一个文件描述符。	
+-- 当读或写一个文件时，将标识一个文件的文件描述符作为参数传递给read 或 write	
+
+
+### open
+******
+	
+	#inlcude <fcntl.h>
+	
+	int open(const char * path, int oflag, .../* mode_t mode */);
+	int openat(int fd, const char * path, int oflag, ...);// relative to directory file descriptor
+
+
+文件和文件描述符之间的连接桥梁，它会创建一个打开的文件描述符，该文件描述符关联这个打开的文件。文件描述符被用于其他IO 功能中引用文件。
+默认的文件偏移别设置在文件的开始处
+
+_path_	--  points to a pathname nameing the file		
+_oflag_	-- file status flags and file access modes of the open file description shall be set according to the value of _oflag_
+
+Vlaues of _oflags_ (bitwise-inclusive OR of flags , defined in fcntl.h)		
+Application shall specify exactly one of the first five(susv4) or three(susv3) values (file access modes) below in the value of oflag:		
+
+* 三个必选其一的 access mode ：
+	+ O_RDONLY		 
+	+ O_RDWR --  Open for reading and writing, The result is undefined if this flag is applied to a FIFO(命名管道)		
+	+ O_WRONLY		
+             
+* add in susv4		
+	- O_EXEC -- Open for execute only (non-directory files), the result is unspecified if this flag is applied to a directory. 		
+	- O_SEARCH -- open directory for search only, The result is unspecified if the flag is applied to a non-directory file.
+
+
+* 可选组合：
+	- O_APPEND -- if set , the file offset shall be set to the end of the file prior to each write. （如果设置的话， 文件偏移会被设置到文件末尾）
+	- O_CLOEXEC -- if set, FD_CLOEXEC flag for the new file descriptor shall be set
+	- O_CREATE -- If file exists, this flag has no effect except as noted under O_EXCL below. Otherwise, the file shall be create; the user ID of the file shall be set to the effective user ID of the process ; the group ID of the file shall be set to the group ID of the file's parent directory or to the effective group ID of the process; and the access permisssion bits (see sys/stat.h) of the file mode shall be set to the value of the argument following oflag taken as type mode_t modified as follow: a bitwise AND is performed on the file-mode bits and the corresponding bits in the complement of the process's file mode bits creationg mask is set are cleared .  When bits other than the file permission bits are set, the effect if unspecified. the argument following the oflag does not affect whether the file is open for reading, writing, or for both. Implementions shall provide a way to initailize the file's group ID to the group ID of the parent directory.Implementations may , but need not , provider an implementation-defined way to initialize the file's group ID to the effective group ID of the calling process.
+	- O_DIRECTORY -- IF  path resolves to a non-directory file , fail and set errno to [ENOTDIR]
+	- O_DSYNC -- Write I/O operations on the file descriptor shall complete ad defined by synchronized I/O data integrity completion. 使每次I/O 等待物理I/O 操作完成，但是如果写操作并不影响读取刚写入的数据，则不等待文件属性被更新。
+	- O_EXCL -- 
