@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Blog On The Way`]]></title>
   <link href="http://libelosophy.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://libelosophy.github.io/"/>
-  <updated>2013-10-12T16:06:01+08:00</updated>
+  <updated>2013-10-13T17:12:11+08:00</updated>
   <id>http://libelosophy.github.io/</id>
   <author>
     <name><![CDATA[JH]]></name>
@@ -37,7 +37,7 @@
 <ul>
 <li>XML , 有常规的xml(human readable text-based encoding,可以用文本编辑器打开) 和 Binary xml。在20世纪，XML经常被用于Ajax网站应用的客户端和服务器之间的数据结构的异步传输。</li>
 <li>JSON， 是一个较之于XML 更加轻量级的序列化格式，JSON 也普遍被用于web 应用的C/S通讯， JSON 基于JavaScript 语法格式，不过也支持其他编程语言。</li>
-<li>YAML， 高效的JSON超集，包括了一些特性使得它拥有更加强大的序列化功能，对人更加友好，拥有更好的潜在兼容性。</li>
+<li>YAML， 高效的JSON超集，包括了一些特性使得它拥有更加强大的序列化功能，对人更加友好，拥有更好的潜在兼容性。在看jekyll 时发现了这个： <a href="http://yaml.org">YAML Ain&rsquo;t Markup Language</a></li>
 <li>MAC OS X Cocoa..
 </br>
 </br></li>
@@ -76,18 +76,19 @@
 
 <ul>
 <li>implemnts Parceable</li>
-<li><p>需要序列化的类必须有一个 static field ： CREATEOR （ CREATEOR 是一个实现了Parcelable.Creator 接口的对象）</p></li>
-<li><p>代码示例：</p>
+<li>需要序列化的类必须有一个 static field ： CREATEOR （ CREATEOR 是一个实现了Parcelable.Creator 接口的对象）</li>
+</ul>
+
+
+<h4>代码示例：</h4>
 
 <ul>
-<li>目的： 实现 Parcelable 接口用于进程间（？）传递对象。程序的运行流程是： 点击MyParcelable 的button ，启动ActivityB 并将一个Person 实例传递过去，然后再再ActivityB 中将收到的Person 对象的信息显示在Textview 上。</li>
-<li>主要结构： 一个Project， 建两个Activity&mdash; MyParcelable，ActivityB 。 MyParcelable 布局中添加一个button， 为Button 添加属性:   <br/>
-android:onClick=&ldquo;onClick&rdquo;     <br/>
-ActivityB 的xml 布局里添加一个TextView。     <br/>
-一个 Person 类实现 Parcelable 接口。</li>
+<li><p>目的： 实现 Parcelable 接口用于进程间（？）传递对象。程序的运行流程是： 点击MyParcelable 的button ，启动ActivityB 并将一个Person 实例传递过去，然后再再ActivityB 中将收到的Person 对象的信息显示在Textview 上。</p></li>
+<li><p>主要结构： 一个Project， 建两个Activity&mdash; MyParcelable，ActivityB 。 MyParcelable 布局中添加一个button， 为Button 添加属性:   <br/>
+  android:onClick=&ldquo;onClick&rdquo;     <br/>
+  ActivityB 的xml 布局里添加一个TextView。     <br/>
+  一个 Person 类实现 Parcelable 接口。</p></li>
 <li>代码：</li>
-</ul>
-</li>
 </ul>
 
 
@@ -213,10 +214,126 @@ ActivityB 的xml 布局里添加一个TextView。     <br/>
 
 <p>运行结果： 如预期。</p>
 
-<ul>
-<li>实例</li>
-</ul>
+<h4>实例</h4>
 
+<p>project简单介绍：
+OIFileManager一个文件浏览器。
+FileHolder 类包含文件基本信息（文件，扩展名&hellip;),
+FileHolderAdapter 是用来关联View 和 file列表数据的Adapter，
+FileListFragment 则是界面及执行体。</p>
+
+<p>首先看看FileHolder 里面的代码，FileHolder 实现了 Parcelable 以支持序列化 ，比较熟悉了：</p>
+
+<pre><code>// FileHolder.java 不完整代码
+public class FileHolder implements Parcelable, Comparable&lt;FileHolder&gt; {
+    private File mFile;
+    private Drawable mIcon;
+    private String mMimeType = "";
+    private Context mContext;
+    private String mExtension;
+
+    // 。。。。。。
+
+    // 用 Parcel 中保存的对象来够造FileHolder对像 的构造函数 
+    public FileHolder(Parcel in){
+        mFile = new File(in.readString());
+        mMimeType = in.readString();
+        mExtension = in.readString();
+    }
+
+    // 序列化
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    // 可以看见向 Parcel 只写入了三条String ： 文件路径， Mimetype， 扩展名
+    // [可以直接用 dest.writeSerializable() 将mFile写到Parcel] ？ [怎么写] ： [为什么不这么用]
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mFile.getAbsolutePath());
+        dest.writeString(mMimeType);
+        dest.writeString(mExtension);
+    }
+
+    public static final Parcelable.Creator&lt;FileHolder&gt; CREATOR = new Parcelable.Creator&lt;FileHolder&gt;() {
+        public FileHolder createFromParcel(Parcel in) {
+            return new FileHolder(in);
+        }
+
+        public FileHolder[] newArray(int size) {
+            return new FileHolder[size];
+        }
+        };
+}
+</code></pre>
+
+<p>在 FileListFragment 中 ：</p>
+
+<pre><code>// FileListFragment.java 不完整代码， 函数也被删去了部分代码
+
+private static final String INSTANCE_STATE_PATH = "path";
+private static final String INSTANCE_STATE_FILES = "files";
+private static final String TAG = "FileListFragment";
+File mPreviousDirectory = null;
+
+
+protected FileHolderListAdapter mAdapter;
+protected DirectoryScanner mScanner; //目录扫描器，扫描目录文件列表并将列表作为消息发送的线程
+protected ArrayList&lt;FileHolder&gt; mFiles = new ArrayList&lt;FileHolder&gt;();
+private String mPath;
+private String mFilename;
+
+private ViewFlipper mFlipper;
+private File mCurrentDirectory;
+
+// onSaveInstanceState(Bundle) 回调函数用来保存fragment 的state 用于重新构造fragment， 
+//  bundle 所放的state 在函数onCreate ， onCreateView onActivityCreate 中可用 
+// 当然还应该有onViewCreated ，
+@Override
+public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+
+    outState.putString(INSTANCE_STATE_PATH, mPath); 
+
+
+    // ArrayList 实现了 Serialization 接口， FileHolder 实现了Parcelable 接口。
+    // Inserts a List of Parcelable values into the mapping of this Bundle
+    outState.putParcelableArrayList(INSTANCE_STATE_FILES, mFiles); // 就这个调用了。
+}
+
+// 
+@Override
+public void onViewCreated(View view, Bundle savedInstanceState) {
+
+    // 删掉了一些无关 主题的代码
+
+    // Get arguments
+    if (savedInstanceState == null) {
+        // 如果没有保存过Fragment 的 实例， 则说明是第一次，从启动时的设置参数中取出path 和filename
+        mPath = getArguments().getString(FileManagerIntents.EXTRA_DIR_PATH);
+
+
+        mFilename = getArguments().getString(
+                FileManagerIntents.EXTRA_FILENAME);
+    } else { // 否则直接从保存的bundle 中恢复state
+        mPath = savedInstanceState.getString(INSTANCE_STATE_PATH);
+        mFiles = savedInstanceState
+                .getParcelableArrayList(INSTANCE_STATE_FILES);
+    }
+    pathCheckAndFix();
+    renewScanner();
+
+    // 设置数据源，及关联到 Fragment （ ？ 一个 ListView 在哪？？ ）
+    Log.v(TAG, "设置数据源， FileHolderAdapter关联到 FileListFragment");
+    mAdapter = new FileHolderListAdapter(mFiles, getActivity());
+
+    setListAdapter(mAdapter);
+    mScanner.start();
+
+}
+</code></pre>
 ]]></content>
   </entry>
   
