@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>再看Java操作符 - Blog On The Way`</title>
+  <meta name="author" content="JH">
+
+  
+  <meta name="description" content="刚开始学java的时候，我看的《java 语言的艺术与科学&mdash;计算机科学导论》，后来我开始看Oracel的《The Java turorials》,觉得这个讲得很清楚，当时我觉得看这个就很好，虽然也在这个教程里面看见了 The Java Language Specification》， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://libelosophy.github.io/blog/2013/10/17/see-java-operators-angain">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Blog On The Way`" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44811164-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Blog On The Way`</a></h1>
+  
+    <h2>Hackers On the way .</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+	<li><a href="https://plus.google.com/109189891020363252008" rel="publisher">Google+</a></li>
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:libelosophy.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">再看Java操作符</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-17T09:20:00+08:00" pubdate data-updated="true">Oct 17<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>刚开始学java的时候，我看的《java 语言的艺术与科学&mdash;计算机科学导论》，后来我开始看Oracel的《The Java turorials》,觉得这个讲得很清楚，当时我觉得看这个就很好，虽然也在这个教程里面看见了 The Java Language Specification》，也觉得这东西肯定很精确，不过没有进去看，主要是时间问题，当时觉得专注一点比较好。不过Turorials 确实比较浅一点，毕竟只是教程而已，教程只是教会你怎么使用&mdash;即ＨＯＷ，而如果你想理解的精确（如ＷＨＹ），就必须看其他的，甚至应该了解底层。
+在看书或者文档之前，也许我要搞清楚这书（或者其他文档/资料）到底是定位，比如仅仅只是教程，又比如是精确的定义，又或者是其他教程加上个人理解。拿android来说，开发者页面有几个选项卡，   <br/>
++ Training<br/>
++ API Guide<br/>
++ Reference<br/>
+其中 trianing 会告诉你如何开始写安卓应用，但是点到即止。而API Guide 则对每个类和接口提供了详细说明，还包括了一些重要概念的说明与解释。 至于Reference 则是参考手册了，javadoc，针对代码
+而写的注释。</p>
+
+<p>好吧，开始正题。</p>
+
+<p>再说操作符之前先看看java语言的数据类型。</p>
+
+<h3>java数据类型：</h3>
+
+<h4>1. 原始数据类型</h4>
+
+<ul>
+<li>boolean 类型</li>
+<li>数值类型（ numeric types）
+
+<ul>
+<li>整数类型 （integer types）
+
+<ul>
+<li>byte</li>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long</li>
+</ul>
+</li>
+<li>浮点类型 （floating -point types）
+
+<ul>
+<li>float</li>
+<li>double</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4>2. 引用数据类型</h4>
+
+<ul>
+<li>array</li>
+<li>Object
+</br>
+
+<h4>3. null 类型</h4>
+
+<p>空类型没有名字，可视为常量。</p></li>
+</ul>
+
+
+<hr />
+
+<p></br></br></p>
+
+<p>Java 为原始数据类型值定义了操作符（为 引用数据类型 String 定义了连接操作符 “+” ）。操作符是什么东西，不过是一个符号表示，人来定义其意义，加上具体实现即可。看操作符根据类型来看最好，</p>
+
+<h3>操作符</h3>
+
+<h4>1. 针对boolean 类型的操作符有：</h4>
+
+<p>+. 关系运算符 （==）  和 （！=）
++. 逻辑补 （!）
++. 逻辑与(&amp;)，逻辑异或（^）， 逻辑或（|）
++. 条件与（&amp;&amp;）, 条件或（||）
++. 三目条件运算符 （ ？ ：）
++. 字符串连接运算符 （+） {连接字符串时，将boolean值装换为 true / false 的字符串}</p>
+
+<h4>2. 针对整数类型的操作符 Numeric 之 Integer Operations</h4>
+
+<ul>
+<li><p>比较操作符</p>
+
+<ul>
+<li>&lt; , &lt;= , > , >=</li>
+<li>== ， ！=</li>
+</ul>
+</li>
+<li><p>数学运算（结果为 int 或 long）</p>
+
+<ul>
+<li>一元正/负操作符: +  ,  &ndash;</li>
+<li>乘/除/取余： * , / , %</li>
+<li>加/减：+ ， &ndash;</li>
+<li>自增/自减 ： ++ ， &mdash;</li>
+<li>带符号左移/带符号右移/无符号右移： &lt;&lt; , >> , >>></li>
+<li>位补（bitwise complement）: ~</li>
+<li>整型位操作符： &amp; ， ^ , |</li>
+</ul>
+</li>
+<li>条件运算符
+
+<ul>
+<li>？ ：</li>
+</ul>
+</li>
+<li>强制类型转换
+  由一种整型转换到其他整型</li>
+<li>字符串连接操作符
+
+<ul>
+<li>十进制值型字符串 如 &ldquo;value:&rdquo; + 0x80 >>>> value:128</li>
+</ul>
+</li>
+</ul>
+
+
+<p>其中需要注意的有：</p>
+
+<ul>
+<li>移位运算符：
+
+<ul>
+<li>n &lt;&lt; s  =  n * power(2,s)  （2的s 次方）</li>
+<li>ｎ >> s  =  n / power(2,s)</li>
+<li>n  >>> s    (其中 2&lt;&lt;-s)是为了去掉符号位
+
+<ul>
+<li>n为正数 ：n >>> s  = ( n >> s )</li>
+<li>n 为 int 型负数 ： n >>> s = (n >> s) + (2&lt;&lt;-s)  = (n >>s) + (2>>(31-s))</li>
+<li>n 为 long 型负数： n >>> s = (n >> s) + (2&lt;&lt;-s)  = (n>>s) + (2&lt;&lt;(63-s))</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>按位运算符 &mdash; ～， &amp; ， ^, |</p>
+
+<p>字符串连接：字符串连接输出的是十进制值字符串</p>
+
+<h4>浮点数操作符</h4>
+
+<h5>浮点数</h5>
+
+<p>Java 中的浮点数有两种，1. IEEE 754 单精度浮点数， 2. IEEE 754 双精度浮点数。
+IEEE 浮点数的值有， 正负无穷， 有限数，正负零，NaN(Not-a number value), 除了NaN， IEEE浮点数是有序的，从最小的到最大的， <br/>
+负无穷 》》 有限负数 》》 正负零 》》 有限负数 》》 负无穷</p>
+
+<p>其中有限非零值都可以表示为： s * m * 2<sup>e-N+1</sup>
+其中：
+s为 +1/-1
+m &lt; 2<sup>N</sup>
+e 位于Emax 和 Emin 之间 ， Emin = &ndash;( 2<sup>K-1</sup>&ndash; 2 )  Emax= 2<sup>K-1</sup>-1
+K , N 取决与浮点数属于那个浮点数集合。</p>
+
+<p>下面这张表说明了单精度浮点数和双精度浮点数的K N 取值</p>
+
+<table border="1"  cellpadding="10"  width="400">
+<caption>浮点数 K N 取值</caption>
+<tr>
+    <th><b>row</b>     </th>
+    <th><b>float</b>   </th>
+    <th><b>double</b>  </th>
+</tr>
+<tr>
+    <td>N</td>
+    <td>24</td>
+    <td>53</td>
+</tr>
+<tr>
+    <td>K</td>
+    <td>8</td>
+    <td>11</td>
+</tr>
+<tr>
+    <td>Emin</td>
+    <td>-127</td>
+    <td>-1022</td>
+</tr>
+<tr>
+    <td>Emax</td>
+    <td>126</td>
+    <td>1023</td>
+</tr>
+</table>
+
+
+<p></br></p>
+
+<h6>其他说明：</h6>
+
+<ul>
+<li>零： 0.0>-0.0  = false  ;  0.0 == -0.0 = true  ; 1.0/0.0 = 正无穷； 1.0/-0.0 = 负无穷</li>
+<li>NaN： &lt;, &lt;=, >, >= ， ==  有一个操作数为ＮａＮ则结果为false,    但是 ！= 有一个操作数为NaN，则值为true</li>
+</ul>
+
+
+<h5>针对浮点数的操作符</h5>
+
+<p>+, -正负
++, &ndash;, *, /, %
+++, &mdash;</p>
+
+<p>==, >, >=, &lt;, &lt;=, !=
+? :</p>
+
+<p>字符串连接</p>
+
+<p>强制类型转换。</p>
+
+<h4>操作符优先级</h4>
+
+<table border="1" cellpadding="8" summary="This table lists operators according to precedence order" width="150%">
+<caption id="nutsandbolts-precedence"><strong>Operator Precedence</strong></caption>
+<tr>
+<th id="h1">Operators</th>
+<th id="h2">Precedence</th>
+</tr>
+<tr>
+<td headers="h1">postfix</td>
+<td headers="h2"><code><em>expr</em>++ <em>expr</em>--</code></td>
+</tr>
+<tr>
+<td headers="h1">unary</td>
+<td headers="h2"><code>++<em>expr</em> --<em>expr</em> +<em>expr</em> -<em>expr</em> ~ !</code></td>
+</tr>
+<tr>
+<td headers="h1">multiplicative</td>
+<td headers="h2"><code>* / %</code></td>
+</tr>
+<tr>
+<td headers="h1">additive</td>
+<td headers="h2"><code>+ -</code></td>
+</tr>
+<tr>
+<td headers="h1">shift</td>
+<td headers="h2"><code>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</code></td>
+</tr>
+<tr>
+<td headers="h1">relational</td>
+<td headers="h2"><code>&lt; &gt; &lt;= &gt;= instanceof</code></td>
+</tr>
+<tr>
+<td headers="h1">equality</td>
+<td headers="h2"><code>== !=</code></td>
+</tr>
+<tr>
+<td headers="h1">bitwise AND</td>
+<td headers="h2"><code>&amp;</code></td>
+</tr>
+<tr>
+<td headers="h1">bitwise exclusive OR</td>
+<td headers="h2"><code>^</code></td>
+</tr>
+<tr>
+<td headers="h1">bitwise inclusive OR</td>
+<td headers="h2"><code>|</code></td>
+</tr>
+<tr>
+<td headers="h1">logical AND</td>
+<td headers="h2"><code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td headers="h1">logical OR</td>
+<td headers="h2"><code>||</code></td>
+</tr>
+<tr>
+<td headers="h1">ternary</td>
+<td headers="h2"><code>? :</code></td>
+</tr>
+<tr>
+<td headers="h1">assignment</td>
+<td headers="h2"><code>= += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=</code></td>
+</tr>
+</table>
+
+
+<p></br>
+规律：</p>
+
+<ul>
+<li>赋值运算符及其各种组合优先级最低</li>
+<li>一元 > 二元 > 三元</li>
+<li>二元： 算数 > 移位 > 关系 (> Equality) > 按位运算 > 逻辑</li>
+<li>算数： 先乘除（包括余）， 后加减</li>
+<li>按位： 与 > 异或 > 或</li>
+<li>逻辑： 与 > 或</li>
+</ul>
+
+
+<p>结合性： 除赋值外，都是左结合</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">JH</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-17T09:20:00+08:00" pubdate data-updated="true">Oct 17<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://libelosophy.github.io/blog/2013/10/17/see-java-operators-angain/" data-via="" data-counturl="http://libelosophy.github.io/blog/2013/10/17/see-java-operators-angain/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/12/android-parcelable/" title="Previous Post: Android 序列化 -- Parcelable">&laquo; Android 序列化 -- Parcelable</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/17/see-java-operators-angain/">再看Java操作符</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/12/android-parcelable/">Android 序列化 -- Parcelable</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/19/unix-programming/">Unix Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/16/sicp/">SICP</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/15/how-to-work-with-git/">How to Work With Git</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/libelosophy">@libelosophy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'libelosophy',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - JH -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'libelosophysblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://libelosophy.github.io/blog/2013/10/17/see-java-operators-angain/';
+        var disqus_url = 'http://libelosophy.github.io/blog/2013/10/17/see-java-operators-angain/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
